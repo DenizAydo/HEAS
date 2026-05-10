@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-feature-settings: "ss01";
+    text-rendering: optimizeLegibility;
+  }
+  /* Viewport-proportional scaling so the layout looks the same size on
+     FHD (1920) / WQHD (2560) / 4K. Reference width: 1600px. */
+  :root {
+    zoom: clamp(0.85, calc(100vw / 1600), 1.6);
+  }
+  @supports not (zoom: 1) {
+    html {
+      font-size: clamp(13px, 0.875vw, 22px);
+    }
+  }
+  ::selection {
+    background: theme("colors.gold.soft");
+    color: theme("colors.ink.DEFAULT");
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cdc7b6;
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  button:focus-visible {
+    outline: 2px solid theme("colors.gold.DEFAULT");
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* Range slider with the original gold-ringed thumb */
+  .range-slider {
+    @apply h-1 w-full appearance-none rounded-full bg-line-strong outline-none;
+  }
+  .range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    background: theme("colors.dark.DEFAULT");
+    border: 3px solid theme("colors.gold.DEFAULT");
+    border-radius: 9999px;
+    cursor: grab;
+    box-shadow: theme("boxShadow.elev-sm");
+  }
+  .range-slider::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    background: theme("colors.dark.DEFAULT");
+    border: 3px solid theme("colors.gold.DEFAULT");
+    border-radius: 9999px;
+    cursor: grab;
+  }
+
+  /* Empty-state diagonal hatch */
+  .pattern-hatch {
+    background: repeating-linear-gradient(
+      135deg,
+      #f3efe4 0 12px,
+      #ebe7dc 12px 24px
+    );
+  }
+}
