@@ -11,7 +11,12 @@
     "build:server": "node ./node_modules/typescript/bin/tsc -b tsconfig.server.json",
     "start": "node dist-server/server.js",
     "preview": "node ./node_modules/vite/bin/vite.js preview",
-    "typecheck": "node ./node_modules/typescript/bin/tsc --noEmit && node ./node_modules/typescript/bin/tsc --noEmit -p tsconfig.server.json"
+    "typecheck": "node ./node_modules/typescript/bin/tsc --noEmit && node ./node_modules/typescript/bin/tsc --noEmit -p tsconfig.server.json && node ./node_modules/typescript/bin/tsc --noEmit -p tsconfig.worker.json",
+    "worker:dev": "node ./node_modules/wrangler/bin/wrangler.js dev",
+    "deploy": "node ./node_modules/vite/bin/vite.js build && node ./node_modules/wrangler/bin/wrangler.js deploy",
+    "db:migrate": "node ./node_modules/wrangler/bin/wrangler.js d1 execute aegis-decisions --remote --file=worker/schema.sql",
+    "db:local-migrate": "node ./node_modules/wrangler/bin/wrangler.js d1 execute aegis-decisions --local --file=worker/schema.sql",
+    "db:query": "node ./node_modules/wrangler/bin/wrangler.js d1 execute aegis-decisions --remote --command"
   },
   "engines": {
     "node": ">=20"
@@ -19,9 +24,11 @@
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0",
     "recharts": "^2.12.7"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260516.1",
     "@types/node": "^24.0.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
@@ -30,6 +37,7 @@
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14",
     "typescript": "^5.8.3",
-    "vite": "^5.4.10"
+    "vite": "^5.4.10",
+    "wrangler": "^3.114.17"
   }
 }

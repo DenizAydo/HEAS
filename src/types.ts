@@ -72,6 +72,14 @@ export interface Profile {
 
 export type PageId = "cockpit" | "lens" | "profile" | "authority" | "about";
 
+export const PAGE_PATHS: Record<PageId, string> = {
+  cockpit: "/inbox",
+  lens: "/recommendation-review",
+  profile: "/profile",
+  authority: "/decision-insights",
+  about: "/about",
+};
+
 export interface NavEntry {
   id: PageId;
   label: string;
@@ -93,4 +101,6 @@ export type IconName =
   | "scope"
   | "lock"
   | "spark"
-  | "doc";
+  | "doc"
+  | "sun"
+  | "moon";

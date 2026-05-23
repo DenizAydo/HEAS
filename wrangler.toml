@@ -1,5 +1,13 @@
 name = "heas"
 compatibility_date = "2025-04-01"
+main = "worker/index.ts"
 
 [assets]
 directory = "./dist"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "aegis-decisions"
+database_id = "a5acba68-32bc-49f4-b8bf-1a2dcc2038fd"
