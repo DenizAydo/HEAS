@@ -53,7 +53,7 @@ export function Profile({ profile, setProfile }: Props) {
           <select
             value={profile.domain}
             onChange={(e) => setProfile({ ...profile, domain: e.target.value })}
-            className="w-full rounded-md border border-line-strong bg-white px-3 py-2.5 text-[13.5px] text-ink outline-none transition-[border-color,box-shadow] focus:border-gold focus:shadow-[0_0_0_3px_rgba(212,168,83,0.2)]"
+            className="w-full rounded-md border border-line-strong bg-bg-elev px-3 py-2.5 text-[13.5px] text-ink outline-none transition-[border-color,box-shadow] focus:border-gold focus:shadow-[0_0_0_3px_rgba(212,168,83,0.2)]"
           >
             {DOMAIN_OPTIONS.map((d) => (
               <option key={d}>{d}</option>

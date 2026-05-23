@@ -25,8 +25,8 @@ export function ReasonCard({ v }: Props) {
 
   return (
     <>
-      <section className="overflow-hidden rounded-[12px] border border-line bg-[linear-gradient(180deg,#faf3df_0%,#fbfaf6_64px)] shadow-elev-md">
-        <div className="flex items-center gap-4 bg-[#f7ecc6] px-[22px] py-4">
+      <section className="overflow-hidden rounded-[12px] border border-line bg-[linear-gradient(180deg,#faf3df_0%,#fbfaf6_64px)] dark:bg-none dark:bg-bg-elev shadow-elev-md">
+        <div className="flex items-center gap-4 bg-gold-soft px-[22px] py-4">
           <span className="rounded bg-gold px-2 py-[3px] font-mono text-[11px] font-medium tracking-[0.1em] text-dark">
             A - Recommendation
           </span>
@@ -36,7 +36,7 @@ export function ReasonCard({ v }: Props) {
           <button
             type="button"
             onClick={() => setShowReason(true)}
-            className="flex-shrink-0 rounded-md border border-gold/70 bg-bg-elev px-4 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-gold-ink transition-colors hover:bg-[#fbfaf6]"
+            className="flex-shrink-0 rounded-md border border-gold/70 bg-bg-elev px-4 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-gold-ink transition-colors hover:bg-bg-elev"
           >
             View reason
           </button>
@@ -52,10 +52,10 @@ export function ReasonCard({ v }: Props) {
           aria-label="Recommendation reason"
         >
           <div
-            className="w-full max-w-[640px] animate-pop overflow-hidden rounded-xl bg-bg-elev shadow-elev-lg"
+            className="w-full max-w-[640px] max-h-[90vh] animate-pop overflow-y-auto rounded-xl bg-bg-elev shadow-elev-lg"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-start justify-between gap-4 border-b border-[#ead9a8] bg-[#f7ecc6] px-[26px] pb-3.5 pt-[22px]">
+            <div className="flex items-start justify-between gap-4 border-b border-gold/40 bg-gold-soft px-[26px] pb-3.5 pt-[22px]">
               <div>
                 <div className="m-0 text-[11px] uppercase tracking-[0.16em] text-gold-ink">
                   A - Recommendation
@@ -78,13 +78,13 @@ export function ReasonCard({ v }: Props) {
               {page === 0 ? <KeyIndicatorsPanel v={v} /> : <MethodologyPanel v={v} />}
             </div>
 
-            <div className="flex items-center justify-between gap-2.5 border-t border-line bg-[#f3efe4] px-[26px] py-3.5">
+            <div className="flex items-center justify-between gap-2.5 border-t border-line bg-[#f3efe4] dark:bg-white/[0.04] px-[26px] py-3.5">
               <button
                 type="button"
                 onClick={() => setPage((p) => Math.max(0, p - 1))}
                 disabled={page === 0}
                 aria-label="Previous"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-line-strong bg-bg-elev text-ink-soft transition-colors hover:bg-[#ede9dd] disabled:cursor-not-allowed disabled:opacity-40"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-line-strong bg-bg-elev text-ink-soft transition-colors hover:bg-line disabled:cursor-not-allowed disabled:opacity-40"
               >
                 <Icon name="back" size={14} />
               </button>
@@ -98,7 +98,7 @@ export function ReasonCard({ v }: Props) {
                     aria-current={page === i ? "true" : undefined}
                     className={cn(
                       "h-2 w-2 rounded-full transition-colors",
-                      page === i ? "bg-gold" : "bg-[#cdc7b6] hover:bg-[#a8a290]",
+                      page === i ? "bg-gold" : "bg-line-strong hover:bg-ink-soft/40",
                     )}
                   />
                 ))}
@@ -111,7 +111,7 @@ export function ReasonCard({ v }: Props) {
                 onClick={() => setPage((p) => Math.min(1, p + 1))}
                 disabled={page === 1}
                 aria-label="Next"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-line-strong bg-bg-elev text-ink-soft transition-colors hover:bg-[#ede9dd] disabled:cursor-not-allowed disabled:opacity-40"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-line-strong bg-bg-elev text-ink-soft transition-colors hover:bg-line disabled:cursor-not-allowed disabled:opacity-40"
               >
                 <Icon name="arrow" size={14} />
               </button>
@@ -138,7 +138,7 @@ function KeyIndicatorsPanel({ v }: { v: Vignette }) {
         {v.features.map((f, i) => (
           <div
             key={i}
-            className="flex items-center gap-3 rounded-md bg-[#f3efe4] px-3.5 py-2.5"
+            className="flex items-center gap-3 rounded-md bg-[#f3efe4] dark:bg-white/[0.04] px-3.5 py-2.5"
           >
             <span
               className={cn(

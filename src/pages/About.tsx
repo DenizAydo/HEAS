@@ -114,7 +114,7 @@ export function About({ goCockpit }: Props) {
 
       <div
         key={i}
-        className="max-w-[760px] animate-slideUp rounded-[12px] border border-line bg-bg-elev p-9 shadow-elev-sm"
+        className="max-w-[760px] animate-slideUp rounded-[12px] border border-line bg-bg-elev p-6 shadow-elev-sm md:p-9"
       >
         <div className="mb-3.5 flex items-baseline gap-[18px]">
           <span className="font-serif text-[56px] leading-none tracking-[-0.04em] text-gold">

@@ -3,6 +3,42 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --c-bg: 244 241 234;
+    --c-bg-elev: 251 250 246;
+    --c-ink: 26 35 50;
+    --c-ink-soft: 58 70 85;
+    --c-line: 226 223 213;
+    --c-line-strong: 210 205 191;
+    --c-gold-soft: 243 232 200;
+    --c-gold-ink: 107 79 26;
+    --c-plum-soft: 236 230 243;
+    --c-plum-ink: 61 47 94;
+    --c-green-soft: 227 236 220;
+    --c-red-soft: 241 221 214;
+    --c-amber-soft: 245 233 197;
+    --c-scrollbar-thumb: 205 199 182;
+    color-scheme: light;
+  }
+
+  .dark {
+    --c-bg: 15 20 28;
+    --c-bg-elev: 26 32 40;
+    --c-ink: 232 234 239;
+    --c-ink-soft: 168 177 193;
+    --c-line: 42 49 64;
+    --c-line-strong: 64 73 90;
+    --c-gold-soft: 59 47 21;
+    --c-gold-ink: 244 220 168;
+    --c-plum-soft: 47 38 70;
+    --c-plum-ink: 200 184 230;
+    --c-green-soft: 22 42 22;
+    --c-red-soft: 51 26 19;
+    --c-amber-soft: 51 39 17;
+    --c-scrollbar-thumb: 60 70 90;
+    color-scheme: dark;
+  }
+
   html,
   body {
     margin: 0;
@@ -12,14 +48,12 @@
     font-feature-settings: "ss01";
     text-rendering: optimizeLegibility;
   }
-  /* Viewport-proportional scaling so the layout looks the same size on
-     FHD (1920) / WQHD (2560) / 4K. Reference width: 1600px. */
   :root {
-    zoom: clamp(0.85, calc(100vw / 1600), 1.6);
+    font-size: clamp(14px, 0.6vw + 12px, 18px);
   }
-  @supports not (zoom: 1) {
-    html {
-      font-size: clamp(13px, 0.875vw, 22px);
+  @media (min-width: 1920px) {
+    :root {
+      font-size: 18px;
     }
   }
   ::selection {
@@ -31,7 +65,7 @@
     height: 10px;
   }
   ::-webkit-scrollbar-thumb {
-    background: #cdc7b6;
+    background: rgb(var(--c-scrollbar-thumb));
     border-radius: 5px;
   }
   ::-webkit-scrollbar-track {
@@ -45,7 +79,6 @@
 }
 
 @layer components {
-  /* Range slider with the original gold-ringed thumb */
   .range-slider {
     @apply h-1 w-full appearance-none rounded-full bg-line-strong outline-none;
   }
@@ -69,12 +102,11 @@
     cursor: grab;
   }
 
-  /* Empty-state diagonal hatch */
   .pattern-hatch {
     background: repeating-linear-gradient(
       135deg,
-      #f3efe4 0 12px,
-      #ebe7dc 12px 24px
+      rgb(var(--c-bg-elev)) 0 12px,
+      rgb(var(--c-bg)) 12px 24px
     );
   }
 }

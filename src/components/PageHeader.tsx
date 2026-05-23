@@ -19,7 +19,7 @@ export function PageHeader({ eyebrow, title, description, className, titleClassN
       )}
       <h1
         className={cn(
-          "m-0 mb-2.5 font-serif text-[36px] font-medium leading-[1.1] tracking-[-0.02em] text-ink",
+          "m-0 mb-2.5 font-serif text-[26px] font-medium leading-[1.1] tracking-[-0.02em] text-ink md:text-[32px] lg:text-[36px]",
           titleClassName,
         )}
       >

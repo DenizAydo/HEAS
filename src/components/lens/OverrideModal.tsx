@@ -24,7 +24,7 @@ export function OverrideModal({ v, onClose, onConfirm }: Props) {
       onClick={onClose}
     >
       <div
-        className="w-full max-w-[560px] animate-pop overflow-hidden rounded-xl bg-bg-elev shadow-elev-lg"
+        className="w-full max-w-[560px] max-h-[90vh] animate-pop overflow-y-auto rounded-xl bg-bg-elev shadow-elev-lg"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-start justify-between border-b border-line px-[26px] pb-3.5 pt-[22px]">
@@ -65,7 +65,7 @@ export function OverrideModal({ v, onClose, onConfirm }: Props) {
           </div>
         </div>
 
-        <div className="flex justify-end gap-2.5 border-t border-line bg-[#f3efe4] px-[26px] py-3.5">
+        <div className="flex justify-end gap-2.5 border-t border-line bg-[#f3efe4] px-[26px] py-3.5 dark:bg-white/[0.04]">
           <Button onClick={onClose}>Cancel</Button>
           <Button
             variant="dark"

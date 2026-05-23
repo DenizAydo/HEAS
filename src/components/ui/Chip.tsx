@@ -16,7 +16,7 @@ export function Chip({ active, className, children, ...rest }: ChipProps) {
         "inline-flex items-center gap-1.5 rounded-full border px-3 py-[7px] text-[12.5px] transition-all duration-100 select-none",
         active
           ? "bg-dark text-white border-dark"
-          : "bg-white text-ink-soft border-line-strong hover:border-gold",
+          : "bg-bg-elev text-ink-soft border-line-strong hover:border-gold",
         className,
       )}
     >

@@ -35,7 +35,7 @@ interface KPIProps {
 function AuditField({ label, value }: { label: string; value: string }) {
   if (!value) return null;
   return (
-    <div className="rounded-md border border-line bg-[#fbfaf6] px-3 py-2">
+    <div className="rounded-md border border-line bg-bg-elev px-3 py-2">
       <div className="mb-0.5 text-[10.5px] font-semibold uppercase tracking-[0.14em] text-[#6b7280]">
         {label}
       </div>
@@ -62,8 +62,15 @@ function KPI({ label, value, accent, sub }: KPIProps) {
 const tooltipStyle = {
   fontSize: 12,
   borderRadius: 6,
-  border: "1px solid #d2cdbf",
+  border: "1px solid rgb(var(--c-line-strong))",
+  backgroundColor: "rgb(var(--c-bg-elev))",
+  color: "rgb(var(--c-ink))",
 };
+
+const chartLine = "rgb(var(--c-line))";
+const chartLineStrong = "rgb(var(--c-line-strong))";
+const chartTickStrong = "rgb(var(--c-ink-soft))";
+const chartTickSoft = "rgb(var(--c-ink-soft) / 0.7)";
 
 type WithId<T> = T extends unknown ? T & { vid: string } : never;
 type DecisionWithId = WithId<Decision>;
@@ -115,7 +122,7 @@ export function Authority({ decisions, profile, openVignette }: Props) {
     [
       { name: "Approved", value: accepts.length, fill: "#4f7a4a" },
       { name: "Manual", value: overrides.length, fill: "#a8503e" },
-      { name: "Open", value: VIGNETTES.length - total, fill: "#cdc7b6" },
+      { name: "Open", value: VIGNETTES.length - total, fill: "rgb(var(--c-line-strong))" },
     ] as const
   ).filter((d) => d.value > 0);
 
@@ -161,7 +168,7 @@ export function Authority({ decisions, profile, openVignette }: Props) {
         description="Overview of your approvals and manual decisions - as a basis for audit, model calibration, and reviews with your team."
       />
 
-      <div className="mb-[18px] flex gap-3.5">
+      <div className="mb-[18px] grid grid-cols-2 gap-3.5 lg:flex">
         <KPI label="Recommendations" value={total} sub={`${VIGNETTES.length - total} open`} />
         <KPI label="Approved" value={accepts.length} accent="#4f7a4a" sub="accepted directly" />
         <KPI label="Manual" value={overrides.length} accent="#a8503e" sub="with rationale" />
@@ -177,15 +184,15 @@ export function Authority({ decisions, profile, openVignette }: Props) {
           <div className="h-60">
             <ResponsiveContainer>
               <BarChart data={perVignette} barCategoryGap={28}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e2dfd5" vertical={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke={chartLine} vertical={false} />
                 <XAxis
                   dataKey="name"
-                  tick={{ fontSize: 12, fill: "#3a4655" }}
-                  axisLine={{ stroke: "#d2cdbf" }}
+                  tick={{ fontSize: 12, fill: chartTickStrong }}
+                  axisLine={{ stroke: chartLineStrong }}
                   tickLine={false}
                 />
                 <YAxis
-                  tick={{ fontSize: 11, fill: "#6b7280" }}
+                  tick={{ fontSize: 11, fill: chartTickSoft }}
                   axisLine={false}
                   tickLine={false}
                   ticks={[0, 1]}
@@ -195,10 +202,10 @@ export function Authority({ decisions, profile, openVignette }: Props) {
                   cursor={{ fill: "rgba(212,168,83,0.08)" }}
                   contentStyle={tooltipStyle}
                 />
-                <Legend wrapperStyle={{ fontSize: 12 }} />
+                <Legend wrapperStyle={{ fontSize: 12, color: chartTickStrong }} />
                 <Bar dataKey="accept" name="Approved" fill="#4f7a4a" radius={[4, 4, 0, 0]} />
                 <Bar dataKey="override" name="Manual" fill="#a8503e" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="open" name="Open" fill="#cdc7b6" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="open" name="Open" fill={chartLineStrong} radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -223,11 +230,11 @@ export function Authority({ decisions, profile, openVignette }: Props) {
                   paddingAngle={2}
                 >
                   {pieData.map((d, i) => (
-                    <Cell key={i} fill={d.fill} stroke="#fbfaf6" strokeWidth={2} />
+                    <Cell key={i} fill={d.fill} stroke="rgb(var(--c-bg-elev))" strokeWidth={2} />
                   ))}
                 </Pie>
                 <Tooltip contentStyle={tooltipStyle} />
-                <Legend wrapperStyle={{ fontSize: 12 }} />
+                <Legend wrapperStyle={{ fontSize: 12, color: chartTickStrong }} />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -247,18 +254,18 @@ export function Authority({ decisions, profile, openVignette }: Props) {
           <div style={{ height: Math.max(180, tagData.length * 44) }}>
             <ResponsiveContainer>
               <BarChart data={tagData} layout="vertical" margin={{ left: 24, right: 24 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e2dfd5" horizontal={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke={chartLine} horizontal={false} />
                 <XAxis
                   type="number"
                   allowDecimals={false}
-                  tick={{ fontSize: 11, fill: "#6b7280" }}
+                  tick={{ fontSize: 11, fill: chartTickSoft }}
                   axisLine={false}
                   tickLine={false}
                 />
                 <YAxis
                   type="category"
                   dataKey="name"
-                  tick={{ fontSize: 12, fill: "#3a4655" }}
+                  tick={{ fontSize: 12, fill: chartTickStrong }}
                   width={210}
                   axisLine={false}
                   tickLine={false}
@@ -274,10 +281,7 @@ export function Authority({ decisions, profile, openVignette }: Props) {
         )}
       </Card>
 
-      <Card
-        className="border-[#ead9a8] px-8 py-7"
-        style={{ background: "linear-gradient(180deg,#faf3df 0%,#fbfaf6 60%)" }}
-      >
+      <Card className="border-gold/40 bg-gold-soft/40 px-8 py-7 dark:bg-gold-soft/20">
         <div className="mb-1.5 text-[11px] uppercase tracking-[0.16em] text-gold-ink">
           Period analysis
         </div>

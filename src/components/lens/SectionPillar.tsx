@@ -13,14 +13,14 @@ interface Props {
 }
 
 const wrapper: Record<PillarVariant, string> = {
-  A: "bg-[linear-gradient(180deg,#faf3df_0%,#fbfaf6_64px)]",
-  B: "bg-[linear-gradient(180deg,#ede6f3_0%,#fbfaf6_64px)]",
+  A: "bg-[linear-gradient(180deg,#faf3df_0%,#fbfaf6_64px)] dark:bg-none dark:bg-bg-elev",
+  B: "bg-[linear-gradient(180deg,#ede6f3_0%,#fbfaf6_64px)] dark:bg-none dark:bg-bg-elev",
   C: "bg-dark text-[#e8eaef] border-[#0d1622]",
 };
 
 const head: Record<PillarVariant, string> = {
-  A: "bg-[#f7ecc6] border-[#ead9a8]",
-  B: "bg-[#e6dcef] border-[#d6c9e3]",
+  A: "bg-gold-soft border-gold/40 dark:border-gold/30",
+  B: "bg-plum-soft border-plum/40 dark:border-plum/30",
   C: "bg-[#131c2c] border-[#2b3648]",
 };
 

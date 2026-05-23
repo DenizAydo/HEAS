@@ -22,7 +22,7 @@ export function ConfidenceIndicator({ v }: Props) {
       name="Model Confidence"
       meta="How certain is the AI here?"
     >
-      <div className="grid grid-cols-[auto_1fr] items-center gap-8 max-[680px]:grid-cols-1">
+      <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-[auto_1fr] md:gap-8">
         <div>
           <div className="flex items-baseline gap-1.5 text-plum">
             <span className="font-serif text-[76px] font-medium leading-none tracking-[-0.04em]">
@@ -49,7 +49,7 @@ export function ConfidenceIndicator({ v }: Props) {
         </div>
       </div>
 
-      <div className="mt-[22px] flex items-start gap-3 rounded-lg border border-[#d6c9e3] bg-white px-[18px] py-3.5">
+      <div className="mt-[22px] flex items-start gap-3 rounded-lg border border-plum/30 bg-bg-elev px-[18px] py-3.5">
         <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-plum-soft text-plum">
           <Icon name="alert" size={14} stroke={2} />
         </div>

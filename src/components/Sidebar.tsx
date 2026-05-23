@@ -1,5 +1,7 @@
 import { Icon } from "./Icon";
 import { cn } from "../lib/cn";
+import { formatClockTime } from "../lib/time";
+import type { Theme } from "../lib/theme";
 import type { DecisionMap, NavEntry, PageId } from "../types";
 
 const NAV: NavEntry[] = [
@@ -14,14 +16,52 @@ interface SidebarProps {
   page: PageId;
   setPage: (p: PageId) => void;
   decisions: DecisionMap;
+  mobileOpen: boolean;
+  onMobileClose: () => void;
+  lastSync: Date;
+  theme: Theme;
+  onToggleTheme: () => void;
 }
 
-export function Sidebar({ page, setPage, decisions }: SidebarProps) {
+export function Sidebar({
+  page,
+  setPage,
+  decisions,
+  mobileOpen,
+  onMobileClose,
+  lastSync,
+  theme,
+  onToggleTheme,
+}: SidebarProps) {
   const decided = Object.keys(decisions).length;
 
   return (
-    <aside className="sticky top-0 flex h-screen flex-col gap-1.5 border-r border-[#0d1622] bg-dark px-[18px] py-7 text-[#e8eaef]">
-      <div className="mb-4 border-b border-white/10 px-2.5 pb-[22px]">
+    <>
+      {mobileOpen && (
+        <div
+          onClick={onMobileClose}
+          className="fixed inset-0 z-40 animate-fadeIn bg-ink/55 backdrop-blur-[2px] md:hidden"
+          aria-hidden="true"
+        />
+      )}
+      <aside
+        className={cn(
+          "fixed inset-y-0 left-0 z-50 flex h-screen w-[280px] max-w-[85vw] flex-col gap-1.5",
+          "border-r border-[#0d1622] bg-dark px-[18px] py-7 text-[#e8eaef]",
+          "transition-transform duration-200 ease-out",
+          mobileOpen ? "translate-x-0" : "-translate-x-full",
+          "md:sticky md:top-0 md:z-auto md:w-auto md:max-w-none md:translate-x-0",
+        )}
+      >
+        <button
+          type="button"
+          onClick={onMobileClose}
+          aria-label="Close menu"
+          className="absolute right-3 top-3 inline-flex h-7 w-7 items-center justify-center rounded-md text-[#8d97a8] hover:bg-white/5 hover:text-white md:hidden"
+        >
+          <Icon name="x" size={18} />
+        </button>
+        <div className="mb-4 border-b border-white/10 px-2.5 pb-[22px]">
         <div className="mb-2.5 inline-flex items-center gap-2.5">
           <span
             className="h-7 w-7 rounded-full ring-1 ring-inset ring-gold/40"
@@ -75,17 +115,23 @@ export function Sidebar({ page, setPage, decisions }: SidebarProps) {
         );
       })}
 
-      <div className="mt-auto border-t border-white/10 px-2.5 pt-3 text-[11px] leading-[1.55] text-[#6b758a]">
-        <div className="mb-1.5 flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-[#7ec47b] shadow-[0_0_0_3px_rgba(126,196,123,0.18)]" />
-          <strong className="font-medium text-[#c5cad4]">Models online</strong>
-        </div>
-        <div className="text-[10.5px] leading-[1.55]">
-          Recommendation v3.4 - Calibration v1.2
-          <br />
-          Last sync - today, 07:42
-        </div>
+      <button
+        type="button"
+        onClick={onToggleTheme}
+        aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+        className="mt-auto flex w-full items-center gap-3 rounded-md px-3 py-2 text-left text-[12.5px] text-[#c5cad4] transition-colors hover:bg-white/5 hover:text-white"
+      >
+        <span className="inline-flex h-5 w-5 flex-none items-center justify-center text-[#8d97a8]">
+          <Icon name={theme === "dark" ? "sun" : "moon"} size={15} stroke={1.7} />
+        </span>
+        <span>{theme === "dark" ? "Light mode" : "Dark mode"}</span>
+      </button>
+
+      <div className="border-t border-white/10 px-2.5 pt-3 text-[11px] leading-[1.55] text-[#6b758a]">
+        <div className="font-medium text-[#c5cad4]">Last sync {formatClockTime(lastSync)}</div>
+        <div className="mt-0.5 text-[10.5px]">Auto-sync every 30 min</div>
       </div>
-    </aside>
+      </aside>
+    </>
   );
 }

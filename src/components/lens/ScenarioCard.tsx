@@ -18,7 +18,7 @@ export function ScenarioCard({ v }: Props) {
     <section className="relative overflow-hidden rounded-[12px] border border-line bg-bg-elev shadow-elev-md">
       <span className="absolute inset-y-0 left-0 w-1 bg-[linear-gradient(180deg,#d4a853_0%,#6b5b95_100%)]" />
 
-      <div className="flex items-center gap-3 border-b border-line-strong bg-[linear-gradient(90deg,#f7ecc6_0%,#ece6f3_100%)] py-3 pl-[26px] pr-[22px]">
+      <div className="flex items-center gap-3 border-b border-line-strong bg-[linear-gradient(90deg,#f7ecc6_0%,#ece6f3_100%)] py-3 pl-[26px] pr-[22px] dark:bg-none dark:bg-gold-soft/40">
         <span className="rounded bg-dark px-2.5 py-1 font-mono text-[10.5px] font-medium uppercase tracking-[0.18em] text-gold">
           Situation
         </span>
@@ -31,8 +31,8 @@ export function ScenarioCard({ v }: Props) {
         </span>
       </div>
 
-      <div className="grid gap-x-8 gap-y-[22px] px-[26px] pb-[26px] pt-6 [grid-template-columns:minmax(220px,280px)_1fr] [grid-template-rows:auto_auto] max-[880px]:[grid-template-columns:1fr]">
-        <div className="flex items-center gap-3.5 [grid-column:1] [grid-row:1] max-[880px]:[grid-column:1] max-[880px]:[grid-row:auto]">
+      <div className="grid gap-x-8 gap-y-[22px] px-[26px] pb-[26px] pt-6 lg:[grid-template-columns:minmax(220px,280px)_1fr] lg:[grid-template-rows:auto_auto]">
+        <div className="flex items-center gap-3.5 lg:[grid-column:1] lg:[grid-row:1]">
           <div
             className="flex h-14 w-14 items-center justify-center rounded-full font-serif text-[22px] font-semibold tracking-tight text-dark shadow-elev-sm ring-1 ring-inset ring-ink/10"
             style={{ background: "radial-gradient(circle at 30% 30%, #faf3df, #d4a853 80%)" }}
@@ -47,13 +47,13 @@ export function ScenarioCard({ v }: Props) {
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 self-start rounded-lg border border-line bg-[#f3efe4] px-4 py-3.5 [grid-column:1] [grid-row:2] max-[880px]:[grid-column:1] max-[880px]:[grid-row:auto]">
+        <div className="flex flex-col gap-3 self-start rounded-lg border border-line bg-[#f3efe4] px-4 py-3.5 dark:bg-white/[0.04] lg:[grid-column:1] lg:[grid-row:2]">
           <ScenarioMetaItem label="Setting" value={v.setting} />
           <ScenarioMetaItem label="Decision" value={v.decisionLabel} />
           <ScenarioMetaItem label="Domain" value={v.domain} />
         </div>
 
-        <div className="relative pl-9 pt-2 [grid-column:2] [grid-row:1/span_2] max-[880px]:[grid-column:1] max-[880px]:[grid-row:auto] max-[880px]:pl-7">
+        <div className="relative pl-7 pt-2 lg:pl-9 lg:[grid-column:2] lg:[grid-row:1/span_2]">
           <span className="absolute -left-0.5 -top-2 font-serif text-[88px] leading-none text-gold/55">
             "
           </span>
