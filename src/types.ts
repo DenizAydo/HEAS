@@ -1,10 +1,6 @@
-export type FeatureFlag = "ok" | "low";
-
-export interface Feature {
-  key: string;
-  value: string;
-  flag: FeatureFlag;
-  weight: number;
+export interface Factor {
+  name: string;
+  contribution: string;
 }
 
 export interface Vignette {
@@ -14,23 +10,19 @@ export interface Vignette {
   role: string;
   domain: string;
   setting: string;
+  timing: string;
   headline: string;
   summary: string;
   fullSituation: string;
   recommendation: string;
   decisionLabel: string;
   confidence: number;
-  caveat: string;
-  caveatSubgroup: string;
-  features: Feature[];
-  notConsidered: string[];
-  scopeTag: string;
-  comparableCases: number;
-  lastCalibrated: string;
-  trainingData: string;
-  modelType: string;
-  featureInputs: string;
-  notIncluded: string;
+  recommendedCount: number;
+  usualCount: number;
+  countUnit: string;
+  factors: Factor[];
+  whatSystemKnows: string[];
+  whatSystemDoesntKnow: string[];
 }
 
 export interface AcceptedDecision {

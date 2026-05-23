@@ -27,7 +27,7 @@ export function ScenarioCard({ v }: Props) {
         </span>
         <span className="flex-1" />
         <span className="text-[11px] italic tracking-[0.06em] text-[#6b7280]">
-          Operational context - captured automatically
+          Operational baseline - captured automatically
         </span>
       </div>
 
@@ -50,7 +50,7 @@ export function ScenarioCard({ v }: Props) {
         <div className="flex flex-col gap-3 self-start rounded-lg border border-line bg-[#f3efe4] px-4 py-3.5 dark:bg-white/[0.04] lg:[grid-column:1] lg:[grid-row:2]">
           <ScenarioMetaItem label="Setting" value={v.setting} />
           <ScenarioMetaItem label="Decision" value={v.decisionLabel} />
-          <ScenarioMetaItem label="Domain" value={v.domain} />
+          <ScenarioMetaItem label="Timing" value={v.timing} />
         </div>
 
         <div className="relative pl-7 pt-2 lg:pl-9 lg:[grid-column:2] lg:[grid-row:1/span_2]">
